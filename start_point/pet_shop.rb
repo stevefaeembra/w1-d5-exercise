@@ -109,7 +109,9 @@ def customer_can_afford_pet(customer, pet)
 end
 
 def sell_pet_to_customer(pet_shop, pet, customer)
-
+  # sell customer a pet provided it exists and they
+  # can pony up the wonga
+  return if pet == nil
   if customer_can_afford_pet(customer, pet)
     add_pet_to_customer(customer, pet)
     remove_customer_cash(customer, pet[:price])
