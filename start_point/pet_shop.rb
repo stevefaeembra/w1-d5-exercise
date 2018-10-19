@@ -35,3 +35,27 @@ def increase_pets_sold(pet_shop, count)
   raise "makes no sense" unless count>0
   pet_shop[:admin][:pets_sold] += count
 end
+
+def stock_count(pet_shop)
+  # check length of pets array
+  pet_shop[:pets].length
+end
+
+def pets_by_breed(pet_shop, breed_name)
+  # result needs to be an array, not just
+  # an integer. Not obvious from test but
+  # going to return an array of matching pets
+  result = []
+  for pet in pet_shop[:pets]
+    result << pet if pet[:breed] == breed_name
+  end
+  result
+end
+
+def find_pet_by_name(pet_shop, pet_name)
+  # return pet based on its pet_name
+  for pet in pet_shop[:pets]
+    return pet if pet[:name] = pet_name
+  end
+  return nil # no such pet
+end
