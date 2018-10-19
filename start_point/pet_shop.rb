@@ -109,16 +109,17 @@ def customer_can_afford_pet(customer, pet)
 end
 
 def sell_pet_to_customer(pet_shop, pet, customer)
-  # sell customer a pet provided it exists and they
-  # can pony up the wonga
+  # sell customer a pet provided it exists
+  # and they can pony up the moolah
+
+  # guards for edge cases
   return if pet == nil
-  if customer_can_afford_pet(customer, pet)
-    add_pet_to_customer(customer, pet)
-    remove_customer_cash(customer, pet[:price])
-    remove_pet_by_name(pet_shop, pet[:name])
-    add_or_remove_cash(pet_shop, pet[:price])
-    increase_pets_sold(pet_shop,1)
-  else
-    raise "Insufficient Funds"
-  end
+  return if not customer_can_afford_pet(customer, pet)
+
+  # transfer funds and move pet from shop to customer
+  add_pet_to_customer(customer, pet)
+  remove_customer_cash(customer, pet[:price])
+  remove_pet_by_name(pet_shop, pet[:name])
+  add_or_remove_cash(pet_shop, pet[:price])
+  increase_pets_sold(pet_shop,1)
 end
