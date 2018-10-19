@@ -3,7 +3,7 @@
 
   customers[]{}
     :name
-    :pets[]
+    :pets[]{}
     :cash
 
   pet_shop{}
@@ -89,6 +89,15 @@ end
 
 def remove_customer_cash(customer, cash)
   # take some money off customer (cash is +ve amount)
-  raise "value must be +ve" if cash < 0
+  raise "value must be positive" if cash < 0
   customer[:cash] -= cash
+end
+
+def customer_pet_count(customer)
+  # number of pets owned by customer
+  customer[:pets].length
+end
+
+def add_pet_to_customer(customer, pet)
+  customer[:pets] << pet
 end
