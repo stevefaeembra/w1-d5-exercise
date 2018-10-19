@@ -101,3 +101,22 @@ end
 def add_pet_to_customer(customer, pet)
   customer[:pets] << pet
 end
+
+# optional ones
+
+def customer_can_afford_pet(customer, pet)
+  customer_cash(customer) >= pet[:price]
+end
+
+def sell_pet_to_customer(pet_shop, pet, customer)
+
+  if customer_can_afford_pet(customer, pet)
+    add_pet_to_customer(customer, pet)
+    remove_customer_cash(customer, pet[:price])
+    remove_pet_by_name(pet_shop, pet[:name])
+    add_or_remove_cash(pet_shop, pet[:price])
+    increase_pets_sold(pet_shop,1)
+  else
+    raise "Insufficient Funds"
+  end
+end
