@@ -1,6 +1,11 @@
 =begin
   summary structure
 
+  customers[]{}
+    :name
+    :pets[]
+    :cash
+
   pet_shop{}
     :pets[]{}
       :name
@@ -71,4 +76,19 @@ def remove_pet_by_name(pet_shop, pet_name)
       return
     end
   end
+end
+
+def add_pet_to_stock(pet_shop, new_pet)
+  # append new pet, no return value
+  pet_shop[:pets] << new_pet
+end
+
+def customer_cash(customer)
+  customer[:cash]
+end
+
+def remove_customer_cash(customer, cash)
+  # take some money off customer (cash is +ve amount)
+  raise "value must be +ve" if cash < 0
+  customer[:cash] -= cash
 end
